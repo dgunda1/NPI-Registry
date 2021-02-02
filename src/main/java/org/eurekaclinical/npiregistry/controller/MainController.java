@@ -1,7 +1,8 @@
 package org.eurekaclinical.npiregistry.controller;
 
 
-import java.util.Optional;
+import java.math.BigDecimal;
+import java.util.List; 
 
 import org.eurekaclinical.npiregistry.entity.NPI_DATA_TEMP;
 import org.eurekaclinical.npiregistry.entity.User;
@@ -48,5 +49,17 @@ public class MainController {
     // This returns a JSON or XML with the NPI_DATA_TEMP
     return npiRepository.findAll();
   }
+  
+  @GetMapping(path="/nextValue")
+  public @ResponseBody BigDecimal getNextValMySequence() {
+    // This returns a JSON or XML with the NPI_DATA_TEMP
+    return npiRepository.getNextValMySequence();
+  }
+    
+   @GetMapping(path="/getProviderNPI")
+    public @ResponseBody List<Object> getProviderNPI() {
+      // This returns a JSON or XML with the NPI_DATA_TEMP
+      return npiRepository.getProviderNPI();
+   }
   
 }

@@ -8,11 +8,13 @@ import javax.persistence.Id;
 @Entity // This tells Hibernate to make a table out of this class
 public class NPI_DATA_TEMP {
 //	@GeneratedValue(strategy=GenerationType.AUTO)
-  @Id
+  
 //  @Column(value = "PR_KEY")
-  private String NPI;
-
+ 
+  @Id
   private String LOCATION_ID;
+  
+  private String NPI;
 
   private String BUSINESS_NAME;
 
@@ -118,6 +120,14 @@ public String getFAX() {
 
 public void setFAX(String fAX) {
 	FAX = fAX;
+}
+
+@Override
+public String toString() {
+	return "NPI_DATA_TEMP [NPI=" + NPI + ", LOCATION_ID=" + LOCATION_ID + ", BUSINESS_NAME=" + BUSINESS_NAME
+			+ ", ADDRESS_LINE_1=" + ADDRESS_LINE_1 + ", ADDRESS_LINE_2=" + ADDRESS_LINE_2 + ", CITY=" + CITY
+			+ ", STATE=" + STATE + ", ZIP=" + ZIP + ", COUNTRY_CODE=" + COUNTRY_CODE + ", PHONE=" + PHONE + ", FAX="
+			+ FAX + "]";
 }
   
   

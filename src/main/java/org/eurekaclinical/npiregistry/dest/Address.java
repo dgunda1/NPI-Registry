@@ -15,6 +15,8 @@ public class Address {
 	public String postal_code;
 	public String telephone_number;
 	public String fax_number;
+	
+	
 	public String getCountry_code() {
 		return country_code;
 	}
@@ -89,5 +91,8 @@ public class Address {
 				+ ", telephone_number=" + telephone_number + ", fax_number=" + fax_number + "]";
 	}
 	
-	
+	public boolean isPrimaryPracticeAddress() { 
+		return (this.getAddress_purpose().contains("LOCATION")?true:false);
+	    
+	}
 }

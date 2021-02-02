@@ -7,7 +7,7 @@ import com.fasterxml.jackson.annotation.JsonUnwrapped;
 public class Result {
 
 	public String enumeration_type;
-	public int number;
+	public String number;
 	public int last_updated_epoch;
 	public int created_epoch;
 	public Basic basic;
@@ -34,13 +34,13 @@ public class Result {
 
 
 
-	public int getNumber() {
+	public String getNumber() {
 		return number;
 	}
 
 
 
-	public void setNumber(int number) {
+	public void setNumber(String number) {
 		this.number = number;
 	}
 
