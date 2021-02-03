@@ -6,7 +6,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity // This tells Hibernate to make a table out of this class
-public class NPI_DATA_TEMP {
+public class NPI_DATA {
 //	@GeneratedValue(strategy=GenerationType.AUTO)
   
 //  @Column(value = "PR_KEY")

@@ -6,7 +6,7 @@ import java.util.stream.Collectors;
 import org.eurekaclinical.npiregistry.dest.Address;
 import org.eurekaclinical.npiregistry.dest.NPI;
 import org.eurekaclinical.npiregistry.dest.Result;
-import org.eurekaclinical.npiregistry.entity.NPI_DATA_TEMP;
+import org.eurekaclinical.npiregistry.entity.NPI_DATA;
 import org.eurekaclinical.npiregistry.repository.NpiRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -45,7 +45,13 @@ public class NpiregistryApplication {
 			
 			npis.forEach(npi -> {
 				try {
-					npiRESTcall(restTemplate,npi);
+					System.out.println(npi.toString().length());
+					if(npi.toString().length() == 10)
+					{	
+					//	npiRESTcall(restTemplate,npi);
+					npiRepository.save(npiRESTcall(restTemplate,npi));
+					
+					}
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -54,15 +60,15 @@ public class NpiregistryApplication {
 		};
 	}
 	
-	public NPI_DATA_TEMP npiRESTcall(RestTemplate restTemplate,Object npi) throws Exception {
-		log.info("Printing NPI data");
+	public NPI_DATA npiRESTcall(RestTemplate restTemplate,Object npi) throws Exception {
+		//log.info("Printing NPI data");
 		
-			log.info(" NPI  Rest Call begin : "+ System.currentTimeMillis());
+			//log.info(" NPI  Rest Call begin : "+ System.currentTimeMillis());
 			NPI npi_result = restTemplate.getForObject(
 					"https://npiregistry.cms.hhs.gov/api/?number="+String.valueOf(npi)+"&version=2.1", NPI.class);
-			log.info(" NPI  Rest Call End : "+ System.currentTimeMillis());
+			//log.info(" NPI  Rest Call End : "+ System.currentTimeMillis());
 			
-			NPI_DATA_TEMP ndt = null ;
+			NPI_DATA ndt = null ;
 			try {
 			 ndt = CopyToNPI(npi_result);
 			 
@@ -74,9 +80,9 @@ public class NpiregistryApplication {
 
 	}
 	
-	public NPI_DATA_TEMP CopyToNPI(NPI npi)
+	public NPI_DATA CopyToNPI(NPI npi)
 	{
-		NPI_DATA_TEMP ndt = new NPI_DATA_TEMP();
+		NPI_DATA ndt = new NPI_DATA();
 		Result  result = npi.getResults().get(0);
 		
 		ndt.setNPI(result.number);
@@ -95,7 +101,7 @@ public class NpiregistryApplication {
 		ndt.setCOUNTRY_CODE(addresses.get(0).getCountry_code());
 		ndt.setPHONE(addresses.get(0).getTelephone_number());
 		ndt.setFAX(addresses.get(0).getFax_number());
-		
+		ndt.setLOCATION_ID(npiRepository.getNextValMySequence().toString());
 		 
 		
 		return ndt;

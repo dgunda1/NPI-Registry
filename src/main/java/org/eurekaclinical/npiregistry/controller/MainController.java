@@ -4,7 +4,7 @@ package org.eurekaclinical.npiregistry.controller;
 import java.math.BigDecimal;
 import java.util.List; 
 
-import org.eurekaclinical.npiregistry.entity.NPI_DATA_TEMP;
+import org.eurekaclinical.npiregistry.entity.NPI_DATA;
 import org.eurekaclinical.npiregistry.entity.User;
 import org.eurekaclinical.npiregistry.repository.NpiRepository;
 import org.eurekaclinical.npiregistry.repository.UserRepository;
@@ -45,7 +45,7 @@ public class MainController {
   }
   
   @GetMapping(path="/allnpi")
-  public @ResponseBody Iterable<NPI_DATA_TEMP> getAllNpiUsers() {
+  public @ResponseBody Iterable<NPI_DATA> getAllNpiUsers() {
     // This returns a JSON or XML with the NPI_DATA_TEMP
     return npiRepository.findAll();
   }

@@ -6,12 +6,12 @@ import org.springframework.data.repository.CrudRepository;
 import java.math.BigDecimal;
 import java.util.List;
 
-import org.eurekaclinical.npiregistry.entity.NPI_DATA_TEMP;
+import org.eurekaclinical.npiregistry.entity.NPI_DATA;
 
 // This will be AUTO IMPLEMENTED by Spring into a Bean called userRepository
 // CRUD refers Create, Read, Update, Delete
 
-public interface NpiRepository extends CrudRepository<NPI_DATA_TEMP, String> {
+public interface NpiRepository extends CrudRepository<NPI_DATA, String> {
 
     @Query(value = "SELECT I2B2OMOP.npi_location_seq.nextval FROM DUAL", nativeQuery = true)
     public BigDecimal getNextValMySequence();
