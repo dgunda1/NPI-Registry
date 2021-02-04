@@ -57,6 +57,8 @@ public class NpiregistryApplication {
 					e.printStackTrace();
 				}
 			});
+			
+			System.exit(-1);
 		};
 	}
 	
