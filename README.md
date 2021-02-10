@@ -9,3 +9,4 @@ Use './mvnw clean package' to build the jar
 Use 'java -jar target/npiregistry-0.0.1-SNAPSHOT.jar' to run the NPI-Registry project.
 
 make sure you are connected to the VPN as the database connection.
+Also change the Database connection details for respective envirment before you build the project 
